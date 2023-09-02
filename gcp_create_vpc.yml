@@ -3,3 +3,6 @@
   hosts: localhost
   connection: local
   gather_facts: false
+
+  roles:
+    - name: gcp_create_vpc

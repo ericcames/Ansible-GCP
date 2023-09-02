@@ -1,20 +1,13 @@
 ---
-- name: Create a Virtual Private (VPC) Cloud at GCP
-  hosts: localhost
-  connection: local
-  gather_facts: false
+- name: Ensure the vpc exists
+  register: my_vpc
+  google.cloud.gcp_compute_network:
+    name: "{{ net_instance }}"
+    auto_create_subnetworks: 'true'
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_cred_kind }}"
+    state: "{{ state }}"
 
-  tasks:  
-
-    - name: Ensure the vpc exists
-      register: my_vpc
-      google.cloud.gcp_compute_network:
-        name: "{{ net_instance }}"
-        auto_create_subnetworks: 'true'
-        project: "{{ gcp_project }}"
-        auth_kind: "{{ gcp_cred_kind }}"
-        state: "{{ state }}"
-
-    - name: print shit out
-      ansible.builtin.debug:
-        var: my_vpc
+- name: print shit out
+  ansible.builtin.debug:
+    var: my_vpc
