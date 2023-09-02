@@ -30,4 +30,4 @@
 
 - name: print shit out
   ansible.builtin.debug:
-    var: my_ports my_ping
+    var: my_ports
