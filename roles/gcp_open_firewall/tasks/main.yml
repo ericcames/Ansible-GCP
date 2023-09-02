@@ -1,0 +1,35 @@
+---
+- name: Ensure our TCP ports are open
+  register: my_ports
+  google.cloud.gcp_compute_firewall:
+    name: open-tcp-ports
+    network: 
+      selfLink: "global/networks/{{ net_instance }}"
+
+      allowed:
+      - ip_protocol: tcp
+        ports:
+        - '22'
+        - '80'
+        - '443'
+        - '8080'
+      project: "{{ gcp_project }}"
+      auth_kind: "{{ gcp_cred_kind }}"
+      state: "{{ state }}"
+
+- name: Ensure we can ping things
+  register: my_ping
+  google.cloud.gcp_compute_firewall:
+    name: allow-icmp
+    network: 
+      selfLink: "global/networks/{{ net_instance }}"
+
+    allowed:
+    - ip_protocol: icmp
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_cred_kind }}"
+    state: "{{ state }}"
+
+- name: print shit out
+  ansible.builtin.debug:
+    var: my_ports my_ping
