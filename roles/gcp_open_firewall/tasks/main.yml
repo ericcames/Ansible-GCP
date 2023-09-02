@@ -7,7 +7,7 @@
       selflink: "global/networks/{{ net_instance }}"
     allowed:
     - ip_protocol: tcp
-      ports: "{{ ports ]]"
+      ports: "{{ ports }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"
