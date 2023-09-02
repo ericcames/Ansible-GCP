@@ -3,6 +3,8 @@
   register: my_ports
   google.cloud.gcp_compute_firewall:
     name: open-tcp-ports
+    network:
+      selflink: "global/networks/{{ net_instance }}"
     allowed:
     - ip_protocol: tcp
       ports:
@@ -18,6 +20,8 @@
   register: my_ping
   google.cloud.gcp_compute_firewall:
     name: allow-icmp
+    network:
+      selflink: "global/networks/{{ net_instance }}"
     allowed:
     - ip_protocol: icmp
     project: "{{ gcp_project }}"
