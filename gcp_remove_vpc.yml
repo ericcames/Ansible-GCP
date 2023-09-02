@@ -1,0 +1,8 @@
+---
+- name: Remove a Virtual Private (VPC) Cloud at GCP
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - name: gcp_remove_vpc
