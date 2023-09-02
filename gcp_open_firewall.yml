@@ -1,0 +1,8 @@
+---
+- name: Ensuring our firewall is open
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - name: gcp_open_firewall
