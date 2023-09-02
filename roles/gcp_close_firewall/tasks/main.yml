@@ -1,5 +1,5 @@
 ---
-- name: Ensure our TCP ports are open
+- name: Ensure our TCP ports are closed
   register: my_ports
   google.cloud.gcp_compute_firewall:
     name: open-tcp-ports
@@ -7,12 +7,12 @@
       selflink: "global/networks/{{ net_instance }}"
     allowed:
     - ip_protocol: tcp
-      ports: "{{ ports ]]"
+      ports: "{{ ports }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"
 
-- name: Ensure we can ping things
+- name: Ensure we can't ping things
   register: my_ping
   google.cloud.gcp_compute_firewall:
     name: allow-icmp
