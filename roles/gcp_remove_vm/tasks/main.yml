@@ -30,5 +30,4 @@
     name: "{{ network_name }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
-    service_account_file: "{{ gcp_cred_file }}"
     state: "{{ state }}"
