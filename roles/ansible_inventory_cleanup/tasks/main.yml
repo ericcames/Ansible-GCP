@@ -7,7 +7,3 @@
 - name: Capture the list of groups
   ansible.builtin.debug:
     msg: "{{ group_names }}"
-      filter:
-        not:
-          - all
-          - ungrouped
