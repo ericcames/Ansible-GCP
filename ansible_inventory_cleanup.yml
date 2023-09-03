@@ -1,8 +1,0 @@
----
-- name: Ensure we clean up our inventory
-  hosts: all
-  gather_facts: false
-
-  roles:
-    - name: ansible_server_list
-    - name: ansible_group_list
