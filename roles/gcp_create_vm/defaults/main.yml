@@ -5,7 +5,7 @@ gcp_cred_kind: serviceaccount
 state: present
 disk_name: my-disk
 disk_size: 50
-disk_image: projects/redhat-cloud/global/images/family/rhel-9
+disk_image: projects/rhel-cloud/global/images/rhel-9-v20230615
 zone: us-west1-a
 region: us-west1
 address_name: my-address
