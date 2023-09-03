@@ -12,5 +12,5 @@ region: us-west1
 address_name: my-address
 server_name: my-server
 machine_type: n1-standard-1
-environment: production
+my_environment: production
 cost_center: 12345

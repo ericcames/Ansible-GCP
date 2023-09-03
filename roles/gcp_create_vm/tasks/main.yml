@@ -45,7 +45,7 @@
       startup-script-url: gs:://graphite-playground/bootstrap.sh
       cost-center: "{{ cost_center }}"
     labels:
-      environment: "{{ environment }}"
+      environment: "{{ my_environment }}"
     network_interfaces:
     - network: "{{ network }}"
       access_configs:
