@@ -4,7 +4,7 @@
   google.cloud.gcp_compute_firewall:
     name: open-tcp-ports
     network:
-      selflink: "global/networks/{{ net_instance }}"
+      selflink: "global/networks/{{ network }}"
     allowed:
     - ip_protocol: tcp
       ports: "{{ ports }}"
@@ -17,7 +17,7 @@
   google.cloud.gcp_compute_firewall:
     name: allow-icmp
     network:
-      selflink: "global/networks/{{ net_instance }}"
+      selflink: "global/networks/{{ network }}"
     allowed:
     - ip_protocol: icmp
     project: "{{ gcp_project }}"

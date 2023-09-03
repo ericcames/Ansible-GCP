@@ -21,12 +21,12 @@
 
 - name: create a instance
   google.cloud.gcp_compute_instance:
-    name: test_object
-    machine_type: n1-standard-1
+    name: "{{ server_name }}"
+    machine_type: "{{ machine_type }}"
     disks:
     - auto_delete: 'true'
       boot: 'true'
-      source: '{{ disk_name }}'
+      source: '{{ disk }}'
     - auto_delete: 'true'
       interface: NVME
       type: SCRATCH
@@ -34,15 +34,15 @@
         disk_type: local-ssd
     metadata:
       startup-script-url: gs:://graphite-playground/bootstrap.sh
-      cost-center: '12345'
+      cost-center: "{{ cost_center }}"
     labels:
-      environment: production
+      environment: "{{ environment }}"
     network_interfaces:
-    - network: "{{ net_instance }}"
+    - network: "{{ network }}"
       access_configs:
       - name: External NAT
         nat_ip: "{{ address_name }}"
-        type: ONE_TO_ONE_NAT
+        type: "{{ network_type }}"
     zone: "{{ zone }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
