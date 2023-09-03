@@ -4,4 +4,5 @@
   gather_facts: false
 
   roles:
-    - name: ansible_inventory_cleanup
+    - name: ansible_server_list
+    - name: ansible_group_list
