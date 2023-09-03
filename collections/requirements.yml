@@ -2,3 +2,4 @@
 collections:
   - name: google.cloud
   - name: community.google
+  - name: awx.awx
