@@ -1,6 +1,6 @@
 ---
 - name: Ensure we clean up our inventory
-  hosts: localhost
+  hosts: all
   gather_facts: false
 
   roles:
