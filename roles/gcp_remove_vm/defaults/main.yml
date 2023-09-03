@@ -1,5 +1,5 @@
 ---
-network: default
+network_name: my-network
 gcp_project: openenv-mkx5w
 gcp_cred_kind: serviceaccount
 state: absent
