@@ -62,7 +62,7 @@
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"
 
-i   - name: print address
+    - name: print address
       debug:
         msg: "{{ address['name']}} -> {{ address['address'] }}"
 
