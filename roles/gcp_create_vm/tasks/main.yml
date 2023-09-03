@@ -19,6 +19,11 @@
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"
 
+- name: Ensure the network variable is available to the gcp_open_firewall play
+  ansible.builtin.set_stats:
+    data:
+      network_info: "{{ network }}"
+
 - name: Ensure we have an address for our vm
   register: address
   google.cloud.gcp_compute_address:
