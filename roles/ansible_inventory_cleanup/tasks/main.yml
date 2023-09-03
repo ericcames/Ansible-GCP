@@ -5,12 +5,9 @@
       my_server_list: "{{ ansible_play_hosts_all }}"
 
 - name: Capture the list of groups
-  ansible.builtin.groups:
-    filter:
-      not:
-        - all
-        - ungrouped
-
-- name: print groups
-  debug:
-    msg: "{{ groups }}"
+  ansible.builtin.debug:
+    msg: "{{ group_names }}"
+      filter:
+        not:
+          - all
+          - ungrouped
