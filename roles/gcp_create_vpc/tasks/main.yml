@@ -2,7 +2,7 @@
 - name: Ensure the vpc exists
   register: my_vpc
   google.cloud.gcp_compute_network:
-    name: "{{ network }}"
+    name: "{{ network_name }}"
     auto_create_subnetworks: 'true'
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"

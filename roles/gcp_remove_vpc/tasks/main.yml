@@ -2,7 +2,7 @@
 - name: Ensure the vpc is gone
   register: my_vpc
   google.cloud.gcp_compute_network:
-    name: "{{ network }}"
+    name: "{{ network_name }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"
