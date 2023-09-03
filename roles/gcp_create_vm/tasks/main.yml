@@ -50,7 +50,7 @@
     - network: "{{ network }}"
       access_configs:
       - name: External NAT
-        nat_ip: "{{ address_name }}"
+        nat_ip: "{{ address }}"
         type: "{{ network_type }}"
     zone: "{{ zone }}"
     project: "{{ gcp_project }}"
