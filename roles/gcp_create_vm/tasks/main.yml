@@ -5,7 +5,7 @@
     name: "{{ disk_name }}"
     size_gb: "{{ disk_size }}"
     source_image: "{{ disk_image }}"
-    zone: "{{ region }}"
+    zone: "{{ zone }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"
@@ -43,7 +43,7 @@
       - name: External NAT
         nat_ip: "{{ address_name }}"
         type: ONE_TO_ONE_NAT
-    zone: "{{ region }}"
+    zone: "{{ zone }}"
     project: "{{ gcp_project }}"
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"

@@ -6,5 +6,6 @@ state: present
 disk_name: my-disk
 disk_size: 50
 disk_image: projects/ubuntu-os-cloud/global/images/family/ubuntu-1604-lts
+zone: us-west1-a
 region: us-west1
 address_name: my-address
