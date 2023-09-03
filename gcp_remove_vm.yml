@@ -1,0 +1,8 @@
+---
+- name: Ensure we get rid of our virtual machine
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - name: gcp_remove_vm

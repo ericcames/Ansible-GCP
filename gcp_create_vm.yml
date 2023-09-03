@@ -1,0 +1,8 @@
+---
+- name: Ensure we have a virtual machine
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - name: gcp_create_vm
