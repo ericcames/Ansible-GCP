@@ -79,18 +79,16 @@
     return_content: yes
 
 - name: "Update the {{ inventory_name }} with the {{ address['name']}} server address" 
-  loop: "{{ address['name'] }}"
   awx.awx.host:
     controller_host: "https://{{ controller_url }}"
     controller_username: "{{ controller_user }}"
     controller_oauthtoken: "{{ new_token.json.token }}"
-    name: "{{ item['address'] }}"
+    name: "{{ address['address'] }}"
     inventory: "{{ inventory_name }}"
     state: present
     enabled: true
 
 - name: "Create a group for {{ address['name']}} servers"
-  loop: "{{ address['name'] }}"
   awx.awx.group:
     controller_host: "https://{{ controller_url }}"
     controller_username: "{{ controller_user }}"
@@ -98,5 +96,5 @@
     name: "{{ address['name'] }}"
     description: "{{ address['name'] }} Servers"
     inventory: "{{ inventory_name }}"
-    hosts: "{{ item['address'] }}"
+    hosts: "{{ address['address'] }}"
     preserve_existing_hosts: true
