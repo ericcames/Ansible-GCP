@@ -1,0 +1,26 @@
+---
+- name: Ensure we destroy our vm
+  google.cloud.gcp_compute_instance:
+    name: "{{ server_name }}"
+    zone: "{{ zone }}"
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_cred_kind }}"
+    state: "{{ state }}"
+
+- name: Ensure we give back our disk space
+  register: disk
+  google.cloud.gcp_compute_disk:
+    name: "{{ disk_name }}"
+    zone: "{{ zone }}"
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_cred_kind }}"
+    state: "{{ state }}"
+
+- name: Ensure we release our IP address
+  register: address
+  google.cloud.gcp_compute_address:
+    name: "{{ address_name }}"
+    region: "{{ region }}"
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_cred_kind }}"
+    state: "{{ state }}"
