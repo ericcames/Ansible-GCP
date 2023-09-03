@@ -62,41 +62,41 @@
     auth_kind: "{{ gcp_cred_kind }}"
     state: "{{ state }}"
 
-    - name: print address
-      debug:
-        msg: "{{ address['name']}} -> {{ address['address'] }}"
+- name: print address
+  debug:
+    msg: "{{ address['name']}} -> {{ address['address'] }}"
 
-    - name: Get an AAP API Token and store it as new_token
-      register: new_token
-      ansible.builtin.uri:
-        url: "https://{{ controller_url }}/api/v2/tokens/"
-        method: POST
-        user: "{{ controller_user }}"
-        password: "{{ controller_passwd }}"
-        validate_certs: no
-        force_basic_auth: yes 
-        status_code: 201 
-        return_content: yes   
+- name: Get an AAP API Token and store it as new_token
+  register: new_token
+  ansible.builtin.uri:
+    url: "https://{{ controller_url }}/api/v2/tokens/"
+    method: POST
+    user: "{{ controller_user }}"
+    password: "{{ controller_passwd }}"
+    validate_certs: no
+    force_basic_auth: yes
+    status_code: 201 
+    return_content: yes
 
-    - name: "Update the {{ inventory_name }} with the {{ address['name']}} server address" 
-      loop: "{{ address['name'] }}"
-      awx.awx.host:
-        controller_host: "https://{{ controller_url }}"
-        controller_username: "{{ controller_user }}"
-        controller_oauthtoken: "{{ new_token.json.token }}"
-        name: "{{ item['address'] }}"
-        inventory: "{{ inventory_name }}"
-        state: present
-        enabled: true
+- name: "Update the {{ inventory_name }} with the {{ address['name']}} server address" 
+  loop: "{{ address['name'] }}"
+  awx.awx.host:
+    controller_host: "https://{{ controller_url }}"
+    controller_username: "{{ controller_user }}"
+    controller_oauthtoken: "{{ new_token.json.token }}"
+    name: "{{ item['address'] }}"
+    inventory: "{{ inventory_name }}"
+    state: present
+    enabled: true
 
-    - name: "Create a group for {{ address['name']}} servers"
-      loop: "{{ address['name'] }}"
-      awx.awx.group:
-        controller_host: "https://{{ controller_url }}"
-        controller_username: "{{ controller_user }}"
-        controller_oauthtoken: "{{ new_token.json.token }}"
-        name: "{{ address['name'] }}"
-        description: "{{ address['name'] }} Servers"
-        inventory: "{{ inventory_name }}"
-        hosts: "{{ item['address'] }}"
-        preserve_existing_hosts: true
+- name: "Create a group for {{ address['name']}} servers"
+  loop: "{{ address['name'] }}"
+  awx.awx.group:
+    controller_host: "https://{{ controller_url }}"
+    controller_username: "{{ controller_user }}"
+    controller_oauthtoken: "{{ new_token.json.token }}"
+    name: "{{ address['name'] }}"
+    description: "{{ address['name'] }} Servers"
+    inventory: "{{ inventory_name }}"
+    hosts: "{{ item['address'] }}"
+    preserve_existing_hosts: true
