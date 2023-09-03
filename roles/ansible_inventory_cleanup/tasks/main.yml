@@ -6,4 +6,4 @@
 
 - name: Capture the list of groups
   ansible.builtin.debug:
-    var: groups.keys
+    var: groups.keys()
