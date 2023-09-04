@@ -1,0 +1,10 @@
+---
+- name: what is going on around here
+  hosts: all
+
+  tasks:
+
+  - name: print
+    when: os is match("rhel.*")
+    debug:
+      msg: "here we go"
