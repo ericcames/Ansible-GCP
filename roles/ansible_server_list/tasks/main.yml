@@ -2,4 +2,4 @@
 - name: Capture the list of servers
   ansible.builtin.set_stats:
     data:
-      my_server_list: "{{ ansible_play_hosts_all }}"
+      my_server_list: "{{ ansible_play_hosts_all | unique }}"
