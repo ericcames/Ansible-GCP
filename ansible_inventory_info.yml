@@ -1,0 +1,7 @@
+---
+- name: Ensure we have our inventory info
+  hosts: all
+  gather_facts: false
+
+  roles:
+    - name: ansible_inventory_info
