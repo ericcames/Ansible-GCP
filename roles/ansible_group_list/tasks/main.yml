@@ -1,5 +1,0 @@
----
-- name: Capture the list of groups
-  ansible.builtin.set_stats:
-    data:
-      my_groups: "{{ group_names }}"
