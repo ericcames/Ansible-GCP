@@ -1,0 +1,5 @@
+---
+controller_url: aap.example.com
+controller_passwd: PASSWORDGOESINASURVEY
+controller_user: mickey
+inventory_name: GCP Inventory - Managed

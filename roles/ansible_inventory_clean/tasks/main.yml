@@ -1,0 +1,35 @@
+---
+- name: Get an AAP API Token and store it as new_token
+  register: new_token
+  ansible.builtin.uri:
+    url: "https://{{ controller_url }}/api/v2/tokens/"
+    method: POST
+    user: "{{ controller_user }}"
+    password: "{{ controller_passwd }}"
+    validate_certs: no
+    force_basic_auth: yes
+    status_code: 201
+    return_content: yes
+
+- name: Ensuring inventory host groups are cleaned
+  loop: "{{ my_groups }}"
+  when: my_groups is defined
+  awx.awx.group:
+    controller_host: "https://{{ controller_url }}"
+    controller_username: "{{ controller_user }}"
+    controller_oauthtoken: "{{ new_token.json.token }}"
+    name: "{{ item }}"
+    inventory: "{{ inventory_name }}"
+    state: absent
+
+- name: "Ensuring the {{ inventory_name }} inventory is cleaned"
+  loop: "{{ my_server_list }}"
+  when: my_server_list is defined
+  awx.awx.host:
+    controller_host: "https://{{ controller_url }}"
+    controller_password: "{{ controller_passwd }}"
+    controller_username: "{{ controller_user }}"
+    controller_oauthtoken: "{{ new_token.json.token }}"
+    name: "{{ item }}"
+    inventory: "{{ inventory_name }}"
+    state: absent

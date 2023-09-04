@@ -1,0 +1,7 @@
+---
+- name: Ensure we have our inventory info
+  hosts: localhost
+  gather_facts: false
+
+  roles:
+    - name: ansible_inventory_clean
